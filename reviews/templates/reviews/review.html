@@ -10,11 +10,13 @@
   <body>
     <form action = "/"  method = "POST">
         {% csrf_token %}
-        {% if has_error %}
+        {% comment %} {% if has_error %}
           <p> This form is Invalid - Please enter a valid username </p>
-        {% endif %}  
-        <label for = "username">Your Name</label>
-        <input id = "username" name = "username" type = "text">
+        {% endif %}  {% endcomment %}
+        
+        {{ form }}
+        {% comment %} <label for = "username">Your Name</label>
+        <input id = "username" name = "username" type = "text"> {% endcomment %}
         <button type = "submit" >Send</button>
 
     </form>

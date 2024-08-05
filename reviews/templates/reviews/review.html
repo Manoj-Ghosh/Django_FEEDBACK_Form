@@ -13,8 +13,14 @@
         {% comment %} {% if has_error %}
           <p> This form is Invalid - Please enter a valid username </p>
         {% endif %}  {% endcomment %}
+
+        <div class = "form-control" {% if form.user_name.errors %} errors {% endif %}>
         
-        {{ form }}
+          {{ form.user_name.label_tag }}
+          {{ form.user_name }}
+          {{ form.user_name.errors }}
+
+        </div>
         {% comment %} <label for = "username">Your Name</label>
         <input id = "username" name = "username" type = "text"> {% endcomment %}
         <button type = "submit" >Send</button>

@@ -22,8 +22,9 @@ def review(request):
         #     })
         # print(entered_username)
         # return HttpResponseRedirect("/thank-you")
+    else:
 
-    form = ReviewForms()
+        form = ReviewForms()
 
     return render(request, "reviews/review.html", {
         #"has_error": False

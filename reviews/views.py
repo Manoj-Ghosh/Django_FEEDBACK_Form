@@ -9,15 +9,17 @@ from .models import Review
 
 def review(request):
     if request.method == "POST":
+        existing_model = Review.objects.get(pk=1)
         #entered_username = request.POST['username']
-        form = ReviewForms(request.POST)
+        form = ReviewForms(request.POST, instance=existing_model)
 
         if form.is_valid():
-            #print(form.cleaned_data)
-            review = Review(user_name = form.cleaned_data['user_name'], 
-                            review_text = form.cleaned_data['review_text'], 
-                            rating = form.cleaned_data['rating'])
-            review.save()
+            form.save()
+            # print(form.cleaned_data)
+            # review = Review(user_name = form.cleaned_data['user_name'], 
+            #                 review_text = form.cleaned_data['review_text'], 
+            #                 rating = form.cleaned_data['rating'])
+            # review.save()
             return HttpResponseRedirect("/thank-you")
             
 

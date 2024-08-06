@@ -9,9 +9,10 @@ from .models import Review
 
 def review(request):
     if request.method == "POST":
-        existing_model = Review.objects.get(pk=1)
+        #existing_model = Review.objects.get(pk=1)
         #entered_username = request.POST['username']
-        form = ReviewForms(request.POST, instance=existing_model)
+        #form = ReviewForms(request.POST, instance=existing_model)
+        form = ReviewForms(request.POST)
 
         if form.is_valid():
             form.save()

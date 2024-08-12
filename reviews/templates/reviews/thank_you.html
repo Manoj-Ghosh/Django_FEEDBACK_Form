@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends "reviews/base.html" %}
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -10,7 +12,16 @@
   <body>
     <h1>Thank You !</h1>
   </body>
-</html>
+</html> {% endcomment %}
+
+
+
+
+{% block title %} Thank You {% endblock %}
+
+{% block content %}
+  <h1> Thank You </h1>
+{% endblock %}
 
 
 

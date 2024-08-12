@@ -1,6 +1,8 @@
 
-{% load static %}
-<!DOCTYPE html>
+{% extends "reviews/base.html" %}
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -11,7 +13,11 @@
     <link rel = "stylesheet" href = "{% static "reviews/styles.css" %}"
 
   </head>
-  <body>
+  <body> {% endcomment %}
+
+  {% block title %} Your Review {% endblock %}
+
+  {% block content %}
     <form action = "/"  method = "POST">
         {% csrf_token %}
         {% comment %} {% if has_error %}
@@ -68,8 +74,10 @@
         <button type = "submit" >Send</button>
 
     </form>
-  </body>
-</html>
+
+    {% endblock %}
+  {% comment %} </body>
+</html> {% endcomment %}
 
 
 

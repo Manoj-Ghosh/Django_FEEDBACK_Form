@@ -1,3 +1,4 @@
+from typing import Any
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Review
@@ -75,6 +76,11 @@ class ReviewView(View):
 
 class ThankYouView(TemplateView):
     template_name = "reviews/thank_you.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["message"] = "This Works !"
+        return context
 
 
 

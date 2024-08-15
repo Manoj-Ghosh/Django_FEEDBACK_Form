@@ -7,37 +7,47 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from django.views.generic import FormView
 
 from .forms import ReviewForms 
 from .models import Review
 
 # Create your views here.
 
-class ReviewView(View):
-    def get(self, request):
-        #Review.objects.all()
+class ReviewView(FormView):
+    form_class = ReviewForms
+    template_name = "reviews/review.html"
+    success_url = "/thank-you"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+    
+
+
+
+# class ReviewView(View):
+#     def get(self, request):
+#         #Review.objects.all()
              
-        form = ReviewForms()
+#         form = ReviewForms()
 
-        return render(request, "reviews/review.html", {
-        #"has_error": False
-        "form": form
-    })
+#         return render(request, "reviews/review.html", {
+#         #"has_error": False
+#         "form": form
+#     })
 
-    def post(self, request):
-        form = ReviewForms(request.POST)
+#     def post(self, request):
+#         form = ReviewForms(request.POST)
 
-        if form.is_valid():
-            form.save()    
-            return HttpResponseRedirect("/thank-you")
+#         if form.is_valid():
+#             form.save()    
+#             return HttpResponseRedirect("/thank-you")
         
-        return render(request, "reviews/review.html", {
-        #"has_error": False
-        "form": form
-    })
-    
-    
-
+#         return render(request, "reviews/review.html", {
+#         #"has_error": False
+#         "form": form
+#     })
 
 
 # def review(request):

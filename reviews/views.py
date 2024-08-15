@@ -6,6 +6,7 @@ from .models import Review
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
+from django.views.generic import DetailView
 
 from .forms import ReviewForms 
 from .models import Review
@@ -110,14 +111,20 @@ class ReviewsListView(ListView):
     #     return context
 
 
-class SingleReviewView(TemplateView):
-    template_name = "reviews/single_review.html"
+# class SingleReviewView(TemplateView):
+#     template_name = "reviews/single_review.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        review_id = kwargs["id"]
-        selected_review = Review.objects.get(pk = review_id)
-        context["reviews"] = selected_review
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         review_id = kwargs["id"]
+#         selected_review = Review.objects.get(pk = review_id)
+#         context["reviews"] = selected_review
+#         return context
     
+class SingleReviewView(DetailView):
+    template_name = "reviews/single_review.html"
+    model = Review
+    context_object_name = "reviews"
+
+  
     

@@ -7,14 +7,18 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.views.generic import FormView
+from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
+
 
 from .forms import ReviewForms 
 from .models import Review
 
 # Create your views here.
 
-class ReviewView(FormView):
+class ReviewView(CreateView):
+    model = Review
+    #fields = "__all__"
     form_class = ReviewForms
     template_name = "reviews/review.html"
     success_url = "/thank-you"
@@ -25,6 +29,15 @@ class ReviewView(FormView):
     
 
 
+
+# class ReviewView(FormView):
+#     form_class = ReviewForms
+#     template_name = "reviews/review.html"
+#     success_url = "/thank-you"
+
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
 
 # class ReviewView(View):
 #     def get(self, request):
